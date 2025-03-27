@@ -1,0 +1,54 @@
+- Variables
++ Variables declared with the "var" always have Global Scope
++ These two keywords provided Block Scope "let" & "const"
++ Variables declared with "let" can't be redeclared, but with "var" can be redeclared.
+
+- Data types
++ Numbers:
+let length = 16;
+let weight = 7.5;
++ Strings:
+let color = "Red";
+let lastName = "Huong";
++ Booleans
+let x = true;
+let y = false;
++ Object:
+const person = {firstName:"Bui", lastName:"Huong"};
++ Array object:
+const cars = ["Vinfast", "Mazda", "BMW"];
++ Date object:
+const date = new Date("2025-02-17");
+
+- Operators
++	Addition
+-	Subtraction
+*	Multiplication
+**	Exponentiation
+/	Division
+%	Modulus (Division Remainder)
+++	Increment
+--	Decrement
+
+- Conditional statements
++ var: Declares a variable
++ let: Declares a block variable
++ const: Declares a block constant
++ if: Marks a block of statements to be executed on a condition
++ switch: Marks a block of statements to be executed in different cases
++ for: Marks a block of statements to be executed in a loop
++ function: Declares a function
++ return: Exits a function
++ try: Implements error handling to a block of statements
+
+- Loops
++ for: loops through a block of code a number of times
++ for/in: loops through the properties of an object
++ for/of: loops through the values of an iterable object
++ while: loops through a block of code while a specified condition is true
++ do/while: also loops through a block of code while a specified condition is true
+
+
+
+
+
