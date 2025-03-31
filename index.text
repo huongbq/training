@@ -48,7 +48,30 @@ const date = new Date("2025-02-17");
 + while: loops through a block of code while a specified condition is true
 + do/while: also loops through a block of code while a specified condition is true
 
+- Rest and Spread Operators:
++ ES6 introduces the rest (...) and spread (...) operators. The rest operator allows us to represent an indefinite number of arguments as an array,
+making it easier to work with variadic functions. The spread operator, on the other hand, allows us to spread an array into individual elements, 
+making it simpler to pass arrays as arguments or concatenate arrays.
 
+- Template Literals:
++ Template literals provide a more convenient way to work with strings in JavaScript. With template literals, you can embed expressions and variables 
+directly within the string using placeholders (${expression}). This feature makes string interpolation and multiline strings much cleaner and more readable.
 
+- Destructuring: is a powerful feature introduced in ES6 that allows you to extract values from arrays or properties from objects and assign them to variables. 
+It provides a concise and convenient way to access specific values without the need for lengthy code. Here's an overview of destructuring in ES6:
 
++ Destructuring Arrays:
+You can destructure an array by using square brackets [] and matching variable names on the left side of the assignment. The values from the array will be 
+assigned to the corresponding variables.
 
++ Destructuring Objects:
+With object destructuring, you can extract specific properties from an object and assign them to variables with matching names. The variable names are enclosed 
+in curly braces {}. 
+
++ Destructuring Nested Objects: You can also destructure nested objects by specifying the nested structure within the destructuring pattern.
+
+- Rest Operator:
++ The rest operator is denoted by three dots (...) followed by a parameter name. It allows you to represent an indefinite number of arguments as an array.
+
+- Spread Operator:
++ The spread operator is also denoted by three dots (...), but it is used in a different context. It allows you to expand an array into its individual elements.
