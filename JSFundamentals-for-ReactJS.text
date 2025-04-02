@@ -1,0 +1,32 @@
+JavaScript Fundamentals for ReactJS
+
+- querySelector: 
++ The Document method querySelector() returns the first Element within the document that matches the specified CSS selector, 
+  or group of CSS selectors. If no matches are found, null is returned.
++ The matching is done using depth-first pre-order traversal of the document's nodes starting with the first element in the 
+  document's markup and iterating through sequential nodes by order of the number of child nodes.
++ If the specified selector matches an ID that is incorrectly used more than once in the document, the first element with 
+  that ID is returned.
+
+- addEventListener: 
++ The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified 
+  event is delivered to the target.
++ Common targets are Element, or its children, Document, and Window, but the target may be any object that supports events
++ The method addEventListener() works by adding a function, or an object that implements a handleEvent() function, to the list 
+  of event listeners for the specified event type on the EventTarget on which it's called. If the function or object is already 
+  in the list of event listeners for this target, the function or object is not added a second time.
++ If an event listener is added to an EventTarget from inside another listener — that is, during the processing of the 
+  event — that event will not trigger the new listener. However, the new listener may be triggered during a later stage 
+  of event flow, such as during the bubbling phase.
+
+- Event: 
++ An event is an action or occurrence that can be detected by a script in a web page.
++ Events are the backbone of user interaction with a web page, and are used to trigger actions,
++ There are two types of events: DOM events and JavaScript events.
++ DOM events are triggered by user interactions, such as mouse clicks, keyboard input, and form submissions
++ JavaScript events are triggered by code, such as when a timer expires or when a script is loaded
++ Events can be handled by event listeners, which are functions that are called when an event occurs
++ Events can be prevented from bubbling up the DOM tree by calling the preventDefault() method on
+the event object.
++ Events are documented in and/or below the pages for the JavaScript objects that emit them. For example, to find out events 
+  fired on the browser window or the current document see the events sections in Window and Document.

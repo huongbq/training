@@ -77,8 +77,8 @@ const [name1, name2, name3, name4] = names;
 console.log(name1);
 
 // Destructuring Objects
-const personn = {
-  name: "Alice",
+const alice = {
+  nameA: "Alice",
   age: 25,
   address: {
     city: "New York",
@@ -86,16 +86,16 @@ const personn = {
   },
 };
 
-const { namee, age, address } = personn;
+const { nameA, age, address } = alice;
 
-console.log(namee);
+console.log(nameA);
 console.log(age);
 console.log(address);
 
 // Destructuring Nested Objects
-const personnn = {
-  nameee: "Alice",
-  age: 25,
+const John = {
+  nameJ: "John",
+  agee: 30,
   address: {
     city: "New York",
     state: "NY",
@@ -103,12 +103,12 @@ const personnn = {
 };
 
 const {
-  nameee,
+  nameJ,
   agee,
   address: { city, state },
-} = personnn;
+} = John;
 
-console.log(nameee);
+console.log(nameJ);
 console.log(agee);
 console.log(city);
 console.log(state);
@@ -121,6 +121,6 @@ function sum(...numbers) {
 console.log(sum(1, 2, 3, 4, 5));
 
 // Spread Operator
-const numberss = [1, 2, 3, 4, 5];
+const numberOperator = [1, 2, 3, 4, 5];
 
-console.log(...numberss);
+console.log(...numberOperator);
