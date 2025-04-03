@@ -28,3 +28,35 @@ document.querySelector("#css-escape").addEventListener("click", () => {
 document.querySelector("#manual-escape").addEventListener("click", () => {
   setBackgroundColor("this\\?element");
 });
+
+// onClick, onChange, onSubmit
+
+const button = document.querySelector("button");
+const selectElement = document.querySelector(".ice-cream");
+const result = document.querySelector(".result");
+const form = document.getElementById("form");
+const logged = document.getElementById("logged");
+
+button.addEventListener("click", (event) => {
+  button.textContent = `Click count: ${event.detail}`;
+});
+
+selectElement.addEventListener("change", (event) => {
+  result.textContent = `You like ${event.target.value}`;
+});
+
+function logSubmit(event) {
+  log.textContent = `Form Submitted! Timestamp: ${event.timeStamp}`;
+  event.preventDefault();
+}
+form.addEventListener("submit", logSubmit);
+
+// Promises, async/await, fetch API
+async function fetchRandomUser() {
+  const response = await fetch("https://randomuser.me/api");
+  const data = await response.json();
+  return data.results[0];
+}
+fetchRandomUser().then((user) => console.log(user));
+const user = await fetchRandomUser();
+console.log(user);

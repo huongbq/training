@@ -27,6 +27,71 @@ JavaScript Fundamentals for ReactJS
 + JavaScript events are triggered by code, such as when a timer expires or when a script is loaded
 + Events can be handled by event listeners, which are functions that are called when an event occurs
 + Events can be prevented from bubbling up the DOM tree by calling the preventDefault() method on
-the event object.
-+ Events are documented in and/or below the pages for the JavaScript objects that emit them. For example, to find out events 
-  fired on the browser window or the current document see the events sections in Window and Document.
+  the event object.
++ Events are documented in and/or below the pages for the JavaScript objects that emit them. 
+
+- onClick:
++ The onClick event is triggered when an element is clicked.
++ It is a common event used in web development to handle user interactions.
++ The event handler function is called when the element is clicked, and it can be used to perform
+  various actions, such as changing the element's style, displaying a message, or submitting a form
++ The event handler function receives an event object as an argument, which contains information about the event,
+  such as the element that was clicked, the coordinates of the click, and the timestamp of the event.
+
+- onChange:
++ The onChange event is triggered when the value of an element changes.
++ It is commonly used with form elements, such as text inputs, select boxes, and radio buttons
++ The event handler function is called when the value of the element changes, and it can be used
+to perform various actions, such as validating the input, displaying a message, or submitting a form
++ The event handler function receives an event object as an argument, which contains information about the event,
+  such as the element that was changed, the new value, and the timestamp of the event.
+
+- onSubmit: 
++ The onSubmit event is triggered when a form is submitted.
++ It is commonly used to handle form submissions and validate user input.
++ The event handler function is called when the form is submitted, and it can be used to perform various actions, 
+  such as validating the input, displaying a message, or preventing the default form submission
++ The event handler function receives an event object as an argument, which contains information about the event,
+  such as the form that was submitted, the input values, and the timestamp of the event.
+
+- Promise:
++ A Promise is an object that represents the eventual completion (or failure) of an asynchronous operation
++ A Promise is created using the Promise constructor, which takes a callback function as an argument
++ The callback function is called with a value, which is then passed to the then() method of the Promise object
++ The then() method is used to handle the result of the asynchronous operation, and can be used
+  to perform various actions, such as displaying a message, updating the UI, or making another request
++ The catch() method is used to handle any errors that occur during the asynchronous operation
++ Promises can be chained together to handle multiple asynchronous operations in sequence
+
+- async/await: 
++ async/await is a syntax for writing asynchronous code that is easier to read and write than traditional
+  callback-based code
++ The async keyword is used to declare a function that returns a Promise
++ The await keyword is used to pause the execution of the function until the Promise is resolved
++ The await keyword can be used with the then() method of a Promise object, or with the
+  Promise constructor
++ The async/await syntax is used to write asynchronous code that is easier to read and write than
+  traditional callback-based code
+
+- fetch API:
++ The Fetch API is a modern API for making HTTP requests in the browser
++ It provides a simple and intuitive way to make requests to a server
++ The fetch() function is used to make a request to a server
++ The fetch() function returns a Promise that resolves to the response of the request
++ The response object contains information about the response, such as the status code, headers, and body
++ The Fetch API is a modern alternative to the XMLHttpRequest object, and provides a simpler and more
+  intuitive way to make HTTP requests in the browser
+
+- Module
++ A module is a self-contained piece of code that can be imported and used in other parts of a program.
++ Modules are used to organize code, reduce code duplication, and improve code reusability.
++ Modules can be written in various programming languages, including JavaScript, Python, and Java.
++ In JavaScript, modules are typically written in a file with a .js extension and can be imported using the import statement.
+
+- Import/export: 
++ The import statement is used to import a module into a script.
++ The export statement is used to export a value or function from a module.
++ The import statement can be used to import a module, a value, or a function from another
+  module.
++ The export statement can be used to export a value or function from a module, so that it
+  can be imported and used in other parts of the program.
