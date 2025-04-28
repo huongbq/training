@@ -1,20 +1,16 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
+import { ThemeProvider } from "@react-navigation/native";
 import { Stack, useRouter, useSegments } from "expo-router";
-import { useAuth } from "contexts/AuthContext";
-import { useColorScheme } from "hooks/useColorScheme";
-import { useState, useEffect } from "react";
+import { useAuth, AuthProvider } from "contexts/AuthContext";
+import { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
+import { useThemeContext, ThemeProviderCustom } from "contexts/ThemeContext";
 
-export function RootLayoutNav() {
+function NavigationLayout() {
   const { isAuthenticated } = useAuth();
   const segments = useSegments();
   const router = useRouter();
-  const colorScheme = useColorScheme();
+  const { theme } = useThemeContext();
+
   const [isNavigationReady, setIsNavigationReady] = useState(false);
 
   useEffect(() => {
@@ -26,7 +22,8 @@ export function RootLayoutNav() {
   useEffect(() => {
     if (!isNavigationReady) return;
 
-    const inAuthGroup = segments[0] === "(auth)";
+    const inAuthGroup =
+      segments[0] === "login" || segments[0] === "on-boarding";
 
     if (!isAuthenticated && !inAuthGroup) {
       router.replace("/login");
@@ -36,14 +33,24 @@ export function RootLayoutNav() {
   }, [isAuthenticated, isNavigationReady, segments]);
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="loading" options={{ headerShown: false }} />
+    <ThemeProvider value={theme}>
+      <Stack initialRouteName="on-boarding">
+        <Stack.Screen name="on-boarding" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar />
     </ThemeProvider>
+  );
+}
+
+export default function RootLayoutNav() {
+  return (
+    <AuthProvider>
+      <ThemeProviderCustom>
+        <NavigationLayout />
+      </ThemeProviderCustom>
+    </AuthProvider>
   );
 }

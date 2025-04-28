@@ -1,87 +1,115 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
-  TextInput,
-  TouchableOpacity,
   Text,
+  TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
+import { IconSymbol } from "components/ui/IconSymbol";
 import { router } from "expo-router";
+import { useAuth } from "contexts/AuthContext";
 
-export default function LogIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function SignInScreen() {
+  const { login } = useAuth();
+
+  const handleSignIn = async () => {
+    await login("", "");
+    router.replace("/(tabs)");
+  };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.innerContainer}>
-        <View style={styles.inputGroup}>
-          <Text style={styles.label}>Email:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-        </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Let's you in</Text>
 
-        <View style={styles.inputGroup}>
-          <Text style={styles.label}>Password:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
-        </View>
+      <TouchableOpacity style={styles.socialButton}>
+        <Text style={styles.socialText}>
+          <IconSymbol name="face.dashed.fill" color="black" />
+          Continue with Google
+        </Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => router.replace("/(tabs)")}>
-          <Text style={styles.buttonText}>Login</Text>
+      <TouchableOpacity style={styles.socialButton}>
+        <Text style={styles.socialText}>Continue with Facebook</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.socialButton}>
+        <Text style={styles.socialText}>Continue with Apple</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.orText}>or</Text>
+
+      <TouchableOpacity style={styles.phoneButton} onPress={handleSignIn}>
+        <Text style={styles.phoneText}>Sign in with Phone Number</Text>
+      </TouchableOpacity>
+
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Don't have an account?</Text>
+        <TouchableOpacity>
+          <Text style={styles.signUp}> Sign up</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#ffffff",
+    padding: 24,
     alignItems: "center",
     justifyContent: "center",
-    padding: 16,
+    backgroundColor: "#fff",
+    flexGrow: 1,
   },
-  innerContainer: {
-    width: "100%",
-    maxWidth: 384,
+  illustration: {
+    height: 200,
+    marginBottom: 32,
   },
-  inputGroup: {
+  title: {
+    fontSize: 24,
+    fontWeight: "600",
     marginBottom: 24,
   },
-  label: {
-    color: "#4B5563",
-    marginBottom: 8,
-  },
-  input: {
+  socialButton: {
+    width: "100%",
     borderWidth: 1,
     borderColor: "#D1D5DB",
-    borderRadius: 8,
-    padding: 12,
-    backgroundColor: "#ffffff",
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom: 16,
   },
-  button: {
-    backgroundColor: "#3B82F6",
-    borderRadius: 8,
-    padding: 12,
-  },
-  buttonText: {
-    color: "#ffffff",
+  socialText: {
     textAlign: "center",
+    fontSize: 16,
+    fontWeight: "500",
+  },
+  orText: {
+    marginVertical: 16,
+    fontSize: 16,
+    color: "#9CA3AF",
+  },
+  phoneButton: {
+    width: "100%",
+    backgroundColor: "#10B981",
+    borderRadius: 12,
+    paddingVertical: 12,
+    marginBottom: 24,
+  },
+  phoneText: {
+    textAlign: "center",
+    fontSize: 16,
     fontWeight: "600",
+    color: "#fff",
+  },
+  footer: {
+    flexDirection: "row",
+  },
+  footerText: {
+    color: "#6B7280",
+  },
+  signUp: {
+    color: "#10B981",
+    fontWeight: "500",
   },
 });

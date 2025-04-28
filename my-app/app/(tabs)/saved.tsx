@@ -5,9 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  TextInput,
 } from "react-native";
 import { Ionicons, FontAwesome, Feather } from "@expo/vector-icons";
+import SearchForm from "components/Search";
 
 const savedStations = [
   {
@@ -39,26 +39,20 @@ const SavedScreen = () => {
     <ScrollView style={styles.container}>
       {isOpenSearch === false ? (
         <View style={styles.header}>
-          <Text style={styles.title}>Saved</Text>
+          <Text style={styles.title}>
+            <Feather name="zap" size={24} color="#10B981" className="ml-1" />{" "}
+            Saved
+          </Text>
           <Ionicons
             name="search"
-            size={20}
+            size={24}
             color="#9CA3AF"
-            style={styles.searchIcon}
+            style={{ marginRight: 4 }}
             onPress={handleClick}
           />
         </View>
       ) : (
-        <View style={styles.searchContainer}>
-          <Ionicons
-            name="search"
-            size={20}
-            color="#9CA3AF"
-            style={styles.searchIcon}
-          />
-          <TextInput placeholder="Search station" style={styles.searchInput} />
-          <Feather name="sliders" size={20} color="#10B981" />
-        </View>
+        <SearchForm />
       )}
       {savedStations.map((station, idx) => (
         <View key={idx} style={styles.card}>
@@ -116,36 +110,21 @@ const SavedScreen = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    padding: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 50,
     flex: 1,
   },
   header: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: 20,
-  },
-  searchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#F3F4F6",
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 16,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-    marginLeft: 8,
-  },
-  searchIcon: {
-    marginRight: 4,
+    justifyContent: "space-between",
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "700",
     color: "#111827",
-    marginBottom: 16,
   },
   card: {
     backgroundColor: "#fff",

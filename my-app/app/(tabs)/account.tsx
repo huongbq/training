@@ -9,29 +9,43 @@ import {
   ScrollView,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useAuth } from "contexts/AuthContext";
+import { router } from "expo-router";
 
-const menuItems = [
-  { icon: "car", label: "My Vehicle" },
-  { icon: "credit-card", label: "Payment Methods" },
-  { icon: "user", label: "Personal Info" },
-  { icon: "lock", label: "Security" },
-  { icon: "globe", label: "Language", right: "English (US)" },
-  { icon: "moon", label: "Dark Mode", toggle: true },
-  { icon: "help-circle", label: "Help Center" },
-  { icon: "file-text", label: "Privacy Policy" },
-  { icon: "info", label: "About EVPoint" },
-];
+interface AccountProps {
+  icon: string;
+  label: string;
+  right?: string;
+  toggle?: boolean;
+}
 
 const AccountScreen = () => {
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.replace("/login");
+  };
+
+  const menuItems: AccountProps[] = [
+    { icon: "truck", label: "My Vehicle" },
+    { icon: "credit-card", label: "Payment Methods" },
+    { icon: "user", label: "Personal Info" },
+    { icon: "lock", label: "Security" },
+    { icon: "globe", label: "Language", right: "English (US)" },
+    { icon: "moon", label: "Dark Mode", toggle: true },
+    { icon: "help-circle", label: "Help Center" },
+    { icon: "file-text", label: "Privacy Policy" },
+    { icon: "info", label: "About EVPoint" },
+  ];
+
   return (
     <ScrollView style={styles.container}>
-      {/* Header */}
       <View style={styles.headerRow}>
         <Text style={styles.headerText}>Account</Text>
         <Feather name="settings" size={20} color="#111" />
       </View>
 
-      {/* User Info */}
       <TouchableOpacity style={styles.profileRow}>
         <Image
           source={{
@@ -45,12 +59,11 @@ const AccountScreen = () => {
         </View>
       </TouchableOpacity>
 
-      {/* Menu */}
       <View style={styles.menuContainer}>
         {menuItems.map((item, index) => (
           <TouchableOpacity key={index} style={styles.menuItem}>
             <Feather
-              name={item.icon}
+              name={item.icon as keyof typeof Feather.glyphMap}
               size={20}
               color="#374151"
               style={{ width: 24 }}
@@ -69,8 +82,7 @@ const AccountScreen = () => {
         ))}
       </View>
 
-      {/* Logout */}
-      <TouchableOpacity style={styles.logoutRow}>
+      <TouchableOpacity style={styles.logoutRow} onPress={handleLogout}>
         <Feather
           name="log-out"
           size={20}

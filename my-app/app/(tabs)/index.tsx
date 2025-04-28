@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
+import SearchForm from "components/Search";
 
 const stations = [
   {
@@ -69,7 +70,7 @@ const HomeScreen = () => {
             styles.iconCircle,
             { backgroundColor: item.available ? "#10B981" : "#EF4444" },
           ]}>
-          <Ionicons size={16} color="#fff" />
+          <Feather name="map-pin" size={20} color="white" />
         </View>
       </View>
       <View style={styles.textContainer}>
@@ -82,17 +83,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Search Input */}
-      <View style={styles.searchContainer}>
-        <Ionicons
-          name="search"
-          size={20}
-          color="#9CA3AF"
-          style={styles.searchIcon}
-        />
-        <TextInput placeholder="Search station" style={styles.searchInput} />
-        <Feather name="sliders" size={20} color="#10B981" />
-      </View>
+      <SearchForm />
 
       {/* Station List */}
       <FlatList
@@ -111,23 +102,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: 50,
     paddingHorizontal: 16,
-  },
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F3F4F6",
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 16,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-    marginLeft: 8,
-  },
-  searchIcon: {
-    marginRight: 4,
   },
   listContent: {
     paddingBottom: 100,
