@@ -1,74 +1,140 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+import { Ionicons, Feather } from "@expo/vector-icons";
+import SearchForm from "components/Search";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const stations = [
+  {
+    id: "1",
+    name: "ImPark Underhill Garage",
+    address: "Brooklyn, 105 Underhill Ave",
+    available: true,
+  },
+  {
+    id: "2",
+    name: "99 Prospect Park W",
+    address: "Brooklyn, 99 Prospect Park W",
+    available: false,
+  },
+  {
+    id: "3",
+    name: "Walgreens - Brooklyn, NY",
+    address: "Brooklyn, 589 Prospect Avenue",
+    available: true,
+  },
+  {
+    id: "4",
+    name: "Rapidpark 906 Union St.",
+    address: "Brooklyn, 906 Union St",
+    available: true,
+  },
+  {
+    id: "5",
+    name: "MTP Parking 755 Kent Ave",
+    address: "Brooklyn, 755 Kent Ave",
+    available: false,
+  },
+  {
+    id: "6",
+    name: "ImPark 302 2nd St",
+    address: "Brooklyn, 302 2nd St",
+    available: true,
+  },
+  {
+    id: "7",
+    name: "ImPark 353 4th Ave",
+    address: "Brooklyn, 353 4th Ave",
+    available: true,
+  },
+  {
+    id: "8",
+    name: "266 13th St",
+    address: "Brooklyn, 266 13th St",
+    available: true,
+  },
+];
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+const HomeScreen = () => {
+  const renderItem = ({ item }: any) => (
+    <TouchableOpacity style={styles.itemContainer}>
+      <View style={styles.iconContainer}>
+        <View
+          style={[
+            styles.iconCircle,
+            { backgroundColor: item.available ? "#10B981" : "#EF4444" },
+          ]}>
+          <Feather name="map-pin" size={20} color="white" />
+        </View>
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.stationName}>{item.name}</Text>
+        <Text style={styles.stationAddress}>{item.address}</Text>
+      </View>
+      <Feather name="chevron-right" size={20} color="#6B7280" />
+    </TouchableOpacity>
   );
-}
+
+  return (
+    <View style={styles.container}>
+      <SearchForm />
+
+      {/* Station List */}
+      <FlatList
+        data={stations}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.listContent}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: 50,
+    paddingHorizontal: 16,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  listContent: {
+    paddingBottom: 100,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E5E7EB",
+  },
+  iconContainer: {
+    marginRight: 12,
+  },
+  iconCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textContainer: {
+    flex: 1,
+  },
+  stationName: {
+    fontWeight: "600",
+    fontSize: 18,
+    color: "#111827",
+  },
+  stationAddress: {
+    color: "#6B7280",
+    fontSize: 16,
   },
 });
+
+export default HomeScreen;
